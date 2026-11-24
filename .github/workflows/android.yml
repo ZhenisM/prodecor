@@ -1,0 +1,78 @@
+name: Android Release
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout project
+        uses: actions/checkout@v5
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+          cache: gradle
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Install dependencies
+        run: flutter pub get
+
+      # Ключ подписи из секретов (если заданы): ANDROID_KEYSTORE_BASE64, ANDROID_KEYSTORE_PASSWORD,
+      # ANDROID_KEY_ALIAS, ANDROID_KEY_PASSWORD. Без них APK подписывается отладочным ключом — годится для теста.
+      - name: Signing key
+        env:
+          KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          if [ -n "$KEYSTORE_BASE64" ]; then
+            echo -n "$KEYSTORE_BASE64" | base64 --decode > android/app/upload.jks
+            {
+              echo "storeFile=upload.jks"
+              echo "storePassword=$KEYSTORE_PASSWORD"
+              echo "keyAlias=$KEY_ALIAS"
+              echo "keyPassword=$KEY_PASSWORD"
+            } > android/key.properties
+            echo "Подпись: ключ из секретов"
+          else
+            echo "::warning::Секреты ключа Android не заданы — APK подписан отладочным ключом (только для теста)"
+          fi
+
+      # Gradle иногда получает 429 от Maven Central — повторяем сборку
+      - name: Build APK and App Bundle
+        run: |
+          for i in 1 2 3; do
+            flutter build apk --release --build-number=${{ github.run_number }} && \
+            flutter build appbundle --release --build-number=${{ github.run_number }} && exit 0
+            echo "Попытка $i не удалась, повтор через 60 с"; sleep 60
+          done
+          exit 1
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: prodecor-apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+
+      - name: Upload App Bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: prodecor-aab
+          path: build/app/outputs/bundle/release/app-release.aab

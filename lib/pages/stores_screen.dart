@@ -1,11 +1,11 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 
-import '../core/format.dart';
-import '../core/i18n.dart';
-import '../core/store.dart';
-import '../theme.dart';
-import '../widgets/common.dart';
+import 'package:prodecor/common/format.dart';
+import 'package:prodecor/common/i18n.dart';
+import 'package:prodecor/core/store.dart';
+import 'package:prodecor/theme/theme.dart';
+import 'package:prodecor/common/widgets.dart';
 
 /// Шоурумы: салоны, где можно показать клиенту образцы
 class StoresScreen extends StatefulWidget {

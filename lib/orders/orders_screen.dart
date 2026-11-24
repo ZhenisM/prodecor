@@ -1,14 +1,14 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 
-import '../core/format.dart';
-import '../core/i18n.dart';
-import '../core/models.dart';
-import '../core/store.dart';
-import '../theme.dart';
-import '../widgets/common.dart';
-import 'dashboard_screen.dart';
-import 'requests_screen.dart';
+import 'package:prodecor/requests/request_data.dart';
+import 'package:prodecor/projects/project_row.dart';
+import 'package:prodecor/common/format.dart';
+import 'package:prodecor/common/i18n.dart';
+import 'package:prodecor/core/models.dart';
+import 'package:prodecor/core/store.dart';
+import 'package:prodecor/theme/theme.dart';
+import 'package:prodecor/common/widgets.dart';
 
 /// Мои заказы: оплаченные заказы по заявкам (отгрузка, бонус) + «Заказы в салонах» (контакт в Б24 и заказы сайтов)
 class OrdersScreen extends StatefulWidget {

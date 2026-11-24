@@ -3,14 +3,14 @@ import 'dart:async';
 import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 
-import '../core/format.dart';
-import '../core/models.dart';
-import '../core/store.dart';
-import '../theme.dart';
-import '../widgets/common.dart';
-import 'catalog_screen.dart';
-import 'estimate.dart';
-import 'forms.dart';
+import 'package:prodecor/catalog/catalog_actions.dart';
+import 'package:prodecor/common/format.dart';
+import 'package:prodecor/core/models.dart';
+import 'package:prodecor/core/store.dart';
+import 'package:prodecor/theme/theme.dart';
+import 'package:prodecor/common/widgets.dart';
+import 'package:prodecor/projects/estimate.dart';
+import 'package:prodecor/customer/project_form.dart';
 
 /// Карточка проекта: объект, состав (кол-во, удаление), смета, отправка заявки менеджеру
 class ProjectScreen extends StatefulWidget {

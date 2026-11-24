@@ -1,18 +1,18 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 
-import '../core/format.dart';
-import '../core/i18n.dart';
-import '../core/store.dart';
-import '../theme.dart';
-import '../widgets/common.dart';
-import 'auth_screen.dart';
-import 'bonuses_screen.dart';
-import 'how_screen.dart';
-import 'orders_screen.dart';
-import 'profile_screen.dart';
-import 'stores_screen.dart';
-import 'support_screen.dart';
+import 'package:prodecor/common/format.dart';
+import 'package:prodecor/common/i18n.dart';
+import 'package:prodecor/core/store.dart';
+import 'package:prodecor/theme/theme.dart';
+import 'package:prodecor/common/widgets.dart';
+import 'package:prodecor/auth/auth_screen.dart';
+import 'package:prodecor/bonuses/bonuses_screen.dart';
+import 'package:prodecor/pages/how_screen.dart';
+import 'package:prodecor/orders/orders_screen.dart';
+import 'package:prodecor/profile/profile_screen.dart';
+import 'package:prodecor/pages/stores_screen.dart';
+import 'package:prodecor/pages/support_screen.dart';
 
 /// «Ещё»: Мои заказы, Бонусы, Магазины, Профиль, Как это работает, Поддержка, язык, выход
 class MoreScreen extends StatelessWidget {

@@ -1,15 +1,15 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 
-import '../core/api.dart';
-import '../core/catalog.dart';
-import '../core/format.dart';
-import '../core/models.dart';
-import '../core/store.dart';
-import '../theme.dart';
-import '../widgets/common.dart';
-import 'catalog_screen.dart';
-import 'project_screen.dart';
+import 'package:prodecor/catalog/catalog_actions.dart';
+import 'package:prodecor/core/api.dart';
+import 'package:prodecor/catalog/catalog_state.dart';
+import 'package:prodecor/common/format.dart';
+import 'package:prodecor/core/models.dart';
+import 'package:prodecor/core/store.dart';
+import 'package:prodecor/theme/theme.dart';
+import 'package:prodecor/common/widgets.dart';
+import 'package:prodecor/projects/project_screen.dart';
 
 /// Карточка товара: фото, цена, наличие, количество, «В проект», характеристики, описание
 class ProductScreen extends StatefulWidget {

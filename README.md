@@ -23,14 +23,22 @@
 
 ## Структура
 
-    lib/core/api.dart        HTTP-клиент API, токен
-    lib/core/store.dart      состояние: дизайнер, клиенты, проекты, справочники
-    lib/core/catalog.dart    каталог: разделы, фильтр, страницы
-    lib/core/models.dart     модели ответов API
-    lib/screens/*            экраны
-    lib/widgets/common.dart  общие элементы (плашки, карточки, менеджеры, формы)
-    lib/theme.dart           цвета кабинета (светлая/тёмная тема), шрифт Onest
-    test/screens_test.dart   проверка, что все экраны рисуются на узком телефоне без ошибок
+    lib/main.dart                 запуск, провайдеры
+    lib/app/shell.dart            нижнее меню и вкладки
+    lib/core/                     API (api.dart), состояние (store.dart), модели (models.dart)
+    lib/common/                   общие элементы (widgets.dart), форматирование (format.dart), RU/ҚАЗ (i18n.dart)
+    lib/theme/theme.dart          цвета кабинета, светлая/тёмная тема, шрифт Onest
+    lib/auth/                     вход, регистрация, восстановление пароля
+    lib/dashboard/                главная
+    lib/customer/                 клиенты и проекты, формы клиента и проекта
+    lib/projects/                 карточка проекта, строка проекта, смета PDF
+    lib/requests/                 заявки (данные заявок и примеры — request_data.dart)
+    lib/orders/                   мои заказы и «Заказы в салонах»
+    lib/catalog/                  каталог: состояние, экран, карточка товара, разделы, фильтр, действия «В проект»
+    lib/bonuses/                  бонусы
+    lib/pages/                    как это работает, поддержка, магазины
+    lib/profile/                  профиль и «Ещё»
+    test/screens_test.dart        все экраны рисуются на узком телефоне; сброс фильтра каталога
 
 ## Сборка (GitHub Actions)
 

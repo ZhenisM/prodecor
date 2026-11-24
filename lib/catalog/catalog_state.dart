@@ -3,10 +3,10 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 
-import 'api.dart';
-import 'format.dart';
-import 'models.dart';
-import 'store.dart';
+import 'package:prodecor/core/api.dart';
+import 'package:prodecor/common/format.dart';
+import 'package:prodecor/core/models.dart';
+import 'package:prodecor/core/store.dart';
 
 const sorts = [
   ('default', 'По умолчанию'),
@@ -20,7 +20,10 @@ const sorts = [
 /// Каталог: разделы, фильтр (умный фильтр сайта), сортировка, подгрузка страниц — как в кабинете
 class CatalogState extends ChangeNotifier {
   final Store store;
-  CatalogState(this.store);
+  CatalogState(this.store) {
+    // при выходе и входе под другим дизайнером — чистый каталог
+    store.onAccountChange.add(reset);
+  }
 
   String dir = 'light';
   int section = 0;
@@ -120,17 +123,41 @@ class CatalogState extends ChangeNotifier {
     }
   }
 
+  /// Сбросить фильтр, сортировку, поиск и «в наличии» (при смене раздела/направления)
+  void _clearQuery() {
+    _debounce?.cancel();
+    ctl = {};
+    q = '';
+    sort = 'default';
+    inStock = false;
+    facets = [];
+  }
+
+  /// Полный сброс каталога — смена аккаунта
+  void reset() {
+    _clearQuery();
+    dir = 'light';
+    section = 0;
+    items = [];
+    page = pages = total = 0;
+    error = '';
+    _key = '';
+    loading = false;
+    notifyListeners();
+  }
+
   void setDir(String d) {
     if (dir == d) return;
     dir = d;
     section = 0;
-    ctl = {};
-    facets = [];
+    _clearQuery();
     load();
   }
 
   void setSection(int id) {
+    if (id == section) return;
     section = id;
+    _clearQuery();
     load();
   }
 
@@ -174,12 +201,9 @@ class CatalogState extends ChangeNotifier {
 
   /// Перейти в раздел из карточки товара (может быть другое направление)
   void openSection(String d, int id) {
-    if (dir != d) {
-      ctl = {};
-      facets = [];
-    }
     dir = d;
     section = id;
+    _clearQuery();
     load();
   }
 

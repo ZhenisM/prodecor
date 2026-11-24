@@ -1,5 +1,5 @@
-import 'api.dart';
-import 'format.dart';
+import 'package:prodecor/core/api.dart';
+import 'package:prodecor/common/format.dart';
 
 typedef J = Map<String, dynamic>;
 

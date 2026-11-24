@@ -1,13 +1,13 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 
-import '../core/i18n.dart';
-import '../core/store.dart';
-import 'catalog_screen.dart';
-import 'clients_screen.dart';
-import 'dashboard_screen.dart';
-import 'more_screen.dart';
-import 'requests_screen.dart';
+import 'package:prodecor/common/i18n.dart';
+import 'package:prodecor/core/store.dart';
+import 'package:prodecor/catalog/catalog_screen.dart';
+import 'package:prodecor/customer/clients_screen.dart';
+import 'package:prodecor/dashboard/dashboard_screen.dart';
+import 'package:prodecor/profile/more_screen.dart';
+import 'package:prodecor/requests/requests_screen.dart';
 
 /// Нижнее меню: Главная · Проекты · Заявки · Каталог · Ещё.
 /// Пока профиль на модерации — только Главная и Ещё (профиль, справка, поддержка).

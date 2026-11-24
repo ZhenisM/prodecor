@@ -2,8 +2,8 @@ import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:printing/printing.dart';
 
-import '../core/format.dart';
-import '../core/models.dart';
+import 'package:prodecor/common/format.dart';
+import 'package:prodecor/core/models.dart';
 
 /// Смета для клиента — PDF: печать, сохранение или отправка в мессенджер
 Future<void> shareEstimate({required Project p, required Client? client, required Me me}) async {

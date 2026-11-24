@@ -3,12 +3,12 @@ import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../core/api.dart';
-import '../core/format.dart';
-import '../core/i18n.dart';
-import '../core/models.dart';
-import '../core/store.dart';
-import '../theme.dart';
+import 'package:prodecor/core/api.dart';
+import 'package:prodecor/common/format.dart';
+import 'package:prodecor/common/i18n.dart';
+import 'package:prodecor/core/models.dart';
+import 'package:prodecor/core/store.dart';
+import 'package:prodecor/theme/theme.dart';
 
 /* ---------- логотип PRODECOR (квадраты 2×2 с точками) ---------- */
 class PdLogo extends StatelessWidget {

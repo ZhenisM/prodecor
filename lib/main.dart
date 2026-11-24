@@ -1,12 +1,12 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 
-import 'core/catalog.dart';
-import 'core/store.dart';
-import 'screens/auth_screen.dart';
-import 'screens/shell.dart';
-import 'theme.dart';
-import 'widgets/common.dart';
+import 'package:prodecor/catalog/catalog_state.dart';
+import 'package:prodecor/core/store.dart';
+import 'package:prodecor/auth/auth_screen.dart';
+import 'package:prodecor/app/shell.dart';
+import 'package:prodecor/theme/theme.dart';
+import 'package:prodecor/common/widgets.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

@@ -1,13 +1,14 @@
 import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 
-import '../core/format.dart';
-import '../core/i18n.dart';
-import '../core/store.dart';
-import '../theme.dart';
-import '../widgets/common.dart';
-import 'dashboard_screen.dart';
-import 'forms.dart';
+import 'package:prodecor/projects/project_row.dart';
+import 'package:prodecor/common/format.dart';
+import 'package:prodecor/common/i18n.dart';
+import 'package:prodecor/core/store.dart';
+import 'package:prodecor/theme/theme.dart';
+import 'package:prodecor/common/widgets.dart';
+import 'package:prodecor/customer/client_form.dart';
+import 'package:prodecor/customer/project_form.dart';
 
 /// Клиенты и проекты: фильтр по статусу, поиск, раскрывающиеся клиенты с проектами
 class ClientsScreen extends StatefulWidget {

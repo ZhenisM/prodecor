@@ -4,9 +4,9 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'api.dart';
-import 'format.dart';
-import 'models.dart';
+import 'package:prodecor/core/api.dart';
+import 'package:prodecor/common/format.dart';
+import 'package:prodecor/core/models.dart';
 
 /// Состояние приложения: дизайнер, клиенты, проекты, открытый проект, каталог, справочники.
 class Store extends ChangeNotifier {
@@ -35,6 +35,9 @@ class Store extends ChangeNotifier {
   /// Проект, в который сейчас добавляются товары из каталога
   int? ctxProjectId;
   Project? get ctxProject => ctxProjectId == null ? null : full[ctxProjectId];
+
+  /// Подписчики на смену аккаунта (выход, вход) — например, каталог сбрасывает фильтр и поиск
+  final List<VoidCallback> onAccountChange = [];
 
   /// Сессия закончилась (токен недействителен) — экран входа покажет сообщение
   String? signedOutReason;
@@ -121,6 +124,9 @@ class Store extends ChangeNotifier {
     api.token = t;
     await _secure.write(key: _tokenKey, value: t);
     signedOutReason = null;
+    for (final f in onAccountChange) {
+      f();
+    }
     await loadAll();
   }
 
@@ -144,6 +150,9 @@ class Store extends ChangeNotifier {
     salons = null;
     ctxProjectId = null;
     tab = 0;
+    for (final f in onAccountChange) {
+      f();
+    }
   }
 
   Future<void> setLang(String v, {bool save = true}) async {
